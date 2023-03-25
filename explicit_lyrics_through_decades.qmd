@@ -1,0 +1,34 @@
+---
+jupyter: python3
+---
+
+# Explicit Song Lyrics Through the Decades
+##### Prisha Bhatia and Kenta Terasaki
+
+
+### Question
+As with many other things in life, the music industry is constantly evolving. Current trends, the artists who are popular, and the interests of audience all have an influence on what is popular and what is talked about in music. A big trend we seem to see now is every song seems to be extremely explicit. Parents moderate this as they choose, some by letting their kids decide what they listen to, some by completely controlling their child's music, and some by only banning certain songs. We have heard many people from older generations mention that their generation was better and didn't have the "crude and disrespectful" values that we have. To put this to the test, we decided to see how music has evolved through the decades. 
+
+We ask: how has the use of explicit lyrics in music changed throughout the decades?
+
+
+### Methods
+The data we chose was the Wikipedia page listing the top 100 billboard music songs for every year.
+
+```{python}
+%load_ext autoreload
+%autoreload 2
+```
+
+```{python}
+from get_data import get_table
+```
+
+```{python}
+
+nineties_data = get_table(1990)
+print(nineties_data)
+
+
+```
+
