@@ -1,2 +1,2 @@
 # Songs-Through-Decades
-SoftDes Midterm Project w/ Kenta
+SoftDes Midterm Project
