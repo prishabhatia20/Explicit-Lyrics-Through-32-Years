@@ -1,3 +1,8 @@
+"""
+This file contains the function get_table, which allows the user
+to input a year and get the Wikipedia Billboard Top 100 songs
+of that year.
+"""
 from bs4 import BeautifulSoup
 import requests
 import pandas as pd
