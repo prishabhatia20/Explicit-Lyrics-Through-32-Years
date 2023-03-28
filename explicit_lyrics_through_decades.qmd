@@ -29,7 +29,6 @@ from get_data import get_table
 from genius_lyrics import lyrics
 from song_bad_word_count import song_bad_word
 from bad_word_counter import word_counter_total
-from get_lyrics import get_lyrics
 ```
 
 The get_table function takes in a year and returns the Wikipedia table associated with that year in list format. Specifically, it is a list of lists. The inner list contains the song and the artist ['Song', 'Artist']. The order that the songs are in is the order that they are ranked (i.e. the element in the list at index 0 is the number one song, and the element in the list at index 99 is the song in the 100th place). In the example below, we input the year 1990 and get a list of 100 songs and their corresponding artists.
@@ -40,14 +39,9 @@ print(number)
 ```
 
 ```{python}
-# filter = lyrics('https://genius.com/Ice-spice-munch-feelin-u-lyrics')
-# print(filter)
 
-
-# # print(song_bad_word(year_artist_song))
-
-# start_year = 2021
-# end_year = 2022
-# word_counter_total(start_year, end_year)
+start_year = 2021
+end_year = 2022
+word_counter_total(start_year, end_year)
 ```
 
