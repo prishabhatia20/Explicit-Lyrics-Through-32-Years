@@ -13,22 +13,25 @@ We ask: how has the use of explicit lyrics in music changed throughout the decad
 
 
 ### Methods
-The data we chose was the Wikipedia page listing the top 100 billboard music songs for every year.
+The data we chose was the Wikipedia page listing the top 100 billboard music songs for every year. In order to scrap this data, we installed the beautifulsoup4 package. We also needed to import requests and pandas to be able to work with our data.
+
+To ensure the latest version of the code shows up, run the cell below.
 
 ```{python}
 %load_ext autoreload
 %autoreload 2
 ```
 
+In order to be able to access the function to scrape the data, we import it below.
+
 ```{python}
 from get_data import get_table
 ```
 
-```{python}
+The get_table function takes in a year and returns the Wikipedia table associated with that year in list format. Specifically, it is a list of lists. The inner list contains the song and the artist ['Song', 'Artist']. The order that the songs are in is the order that they are ranked (i.e. the element in the list at index 0 is the number one song, and the element in the list at index 99 is the song in the 100th place). In the example below, we input the year 1990 and get a list of 100 songs and their corresponding artists.
 
+```{python}
 nineties_data = get_table(1990)
 print(nineties_data)
-
-
 ```
 
