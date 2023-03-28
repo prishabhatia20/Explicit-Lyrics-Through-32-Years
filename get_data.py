@@ -48,25 +48,26 @@ def get_table(year):
     # Removing parentheses
     list_data = [
         [
-            item[1].replace("(", "").replace(")", ""),
-            item[0].replace(")", "").replace("(", ""),
+            item[0].replace("(", "").replace(")", ""),
+            item[1].replace(")", "").replace("(", ""),
         ]
         for item in list_data
     ]
 
-    # Removing ampersands
+    # Replace ampersands with "and"
     list_data = [
         [
-            item[1].replace("&", "").replace("&", ""),
-            item[0].replace("&", "").replace("&", ""),
+            item[0].replace("&", "and").replace("&", "and"),
+            item[1].replace("&", "and").replace("&", "and"),
         ]
         for item in list_data
     ]
+
     # Removing plus signs
     list_data = [
         [
-            item[1].replace("+ ", "").replace("+ ", ""),
             item[0].replace("+ ", "").replace("+ ", ""),
+            item[1].replace("+ ", "").replace("+ ", ""),
         ]
         for item in list_data
     ]
@@ -74,16 +75,16 @@ def get_table(year):
     # Removing quotation marks and backslashes
     list_data = [
         [
-            item[1].strip('"\\'),
             item[0].strip('"\\'),
+            item[1].strip('"\\'),
         ]
         for item in list_data
     ]
 
     list_data = [
         [
-            item[1].strip(','),
-            item[0].strip(','),
+            item[0].replace(",", ""),
+            item[1].replace(",", ""),
         ]
         for item in list_data
     ]
@@ -91,8 +92,17 @@ def get_table(year):
     # Replacing (x - x) with a single space
     list_data = [
         [
-            item[1].replace(" - ", "-").replace(" - ", "-"),
-            item[0].replace(" - ", "-").replace(" - ", "-"),
+            item[0].replace(" - ", "-").replace(" – ", "-"),
+            item[1].replace(" - ", "-").replace(" – ", "-"),
+        ]
+        for item in list_data
+    ]
+
+    # Replace . with nothing
+    list_data = [
+        [
+            item[0].replace(".", ""),
+            item[1].replace(".", ""),
         ]
         for item in list_data
     ]
@@ -100,13 +110,12 @@ def get_table(year):
     # Replacing spaces with dashes
 
     list_data = [
-        [item[1].replace(" ", "-"), item[0].replace(" ", "-")] for item in list_data
+        [item[0].replace(" ", "-"), item[1].replace(" ", "-")] for item in list_data
     ]
-
     fixed_list = []
-    for artist, song in list_data:
+    for song, artist in list_data:
         if "featuring" in artist:
             remove_index = artist.index("featuring")
-            artist = artist[0: int(remove_index - 1)]
-        fixed_list.append([artist,song])
+            artist = artist[0 : int(remove_index - 1)]
+        fixed_list.append([artist, song])
     return fixed_list
