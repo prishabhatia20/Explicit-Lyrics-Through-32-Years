@@ -44,6 +44,27 @@ def get_table(year):
     list_data = data_frame.values.tolist()
 
     # Removing extra quotation marks and backslashes from the list
-    list_data = [[item[0].strip('"\\'), item[1].strip('"\\')] for item in list_data]
+    # list_data = [
+    #     [item[1].replace(" ", "-").strip('"\\()'), item[0].replace(" ", "-").strip('"\\()')]
+    #     for item in list_data
+    # ]
 
+    list_data = [
+        [item[1].replace(" ", "-"), item[0].replace(" ", "-")] for item in list_data
+    ]
+    list_data = [
+        [
+            item[1].replace("(", "").replace(")", ""),
+            item[0].replace(")", "").replace("(", ""),
+        ]
+        for item in list_data
+    ]
+
+    list_data = [
+        [
+            item[0].strip('"\\'),
+            item[1].strip('"\\'),
+        ]
+        for item in list_data
+    ]
     return list_data
