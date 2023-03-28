@@ -1,7 +1,7 @@
 from get_data import get_table
 from song_bad_word_count import song_bad_word
 def word_counter_total(start_year, end_year):
-    year = start_year  
+    year = start_year
     while year <= end_year:
         year_word_counter = 0
         year_artist_song = get_table(year)

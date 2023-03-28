@@ -62,8 +62,8 @@ def get_table(year):
 
     list_data = [
         [
-            item[0].strip('"\\'),
             item[1].strip('"\\'),
+            item[0].strip('"\\'),
         ]
         for item in list_data
     ]
