@@ -5,18 +5,18 @@ from collections import Counter
 def song_bad_word(year_artist_song):
     """
     This function uses artist and lyrics data and compares it to a word bank
-    of bad words and adds the number times each bad word occurs. 
+    of bad words and adds the number times each bad word occurs.
     The function uses lyrics which determins the number of bad words in one song.
-    The function also uses a Counter function which was imported from collections 
+    The function also uses a Counter function which was imported from collections
     which helps add dictionary values together with the same keys.
-    Then returns the answer to how many times each bad word occurs. 
+    Then returns the answer to how many times each bad word occurs.
 
     Args:
         year_artist_song: A list with two strings inside them. First is the artist
-        and the second is the song name. 
+        and the second is the song name.
     Returns:
-        add_dict: A dictionary with each key being each bad word and each value 
-        being a counter for how many times each bad word occurs. 
+        add_dict: A dictionary with each key being each bad word and each value
+        being a counter for how many times each bad word occurs.
     """
     add_dict = Counter(
         {
@@ -37,7 +37,7 @@ def song_bad_word(year_artist_song):
             "motherfucker": 0,
             "hoe": 0,
             "whore": 0,
-            "munch": 0
+            "munch": 0,
         }
     )
 
@@ -74,7 +74,7 @@ def song_bad_word(year_artist_song):
         #         return_dict[word] = add_dict[word]
         #     else:
         #         return_dict[word] = 0
-            # print(f"return dict: {return_dict}")
+        # print(f"return dict: {return_dict}")
         # genius_lyrics.py file that returns number of bad words for each song in the year
-        print(add_dict)
+        # print(add_dict)
     return dict(add_dict)

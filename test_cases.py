@@ -9,43 +9,49 @@ from get_data import get_table
 
 test_cases_get_table = [
     # Test that the 98th element of the 1990's list
-    # is ['Mentirosa', 'Mellow Man Ace']
-    (1990, 98, ["Mentirosa", "Mellow-Man-Ace"]),
+    # is ['Mellow Man Ace', 'Mentirosa']
+    (1990, 98, ["Mellow-Man-Ace", "Mentirosa"]),
     # Test that the function removed extra forward slashes
-    (1990, 59, ["Can't-Stop", "After-7"]),
+    (1990, 59, ["After-7", "Can't-Stop"]),
     # Test that the function removed extra quotation marks
-    (1990, 79, ["Romeo", "Dino"]),
+    (1990, 79, ["Dino", "Romeo"]),
     # Test that the 16th element of the 2000's list
     # is ["Music", "Madonna"]
-    (2000, 16, ["Music", "Madonna"]),
+    (2000, 16, ["Madonna", "Music"]),
     # Test that the 26th element of the 2000's list
     # is ["It's Gonna Be Me", 'N Sync]
-    (2000, 26, ["It's-Gonna-Be-Me", "'N-Sync"]),
+    (2000, 26, ["'N-Sync", "It's-Gonna-Be-Me"]),
     # Test that special letters like the squiggly Spanish n
     # show up
-    (2020, 43, ["Señorita", "Shawn-Mendes-and-Camila-Cabello"]),
-    # Test that parentheses show up properly and that ampersands show up
+    (2020, 43, ["Shawn-Mendes-and-Camila-Cabello", "Señorita"]),
+    # Test that parentheses are removed
     (
         1960,
         74,
         [
-            "A-Rockin'-Good-Way-(To-Mess-Around-and-Fall-in-Love)",
-            "Dinah-Washington-&-Brook-Benton",
+            "Dinah-Washington-and-Brook-Benton",
+            "A-Rockin'-Good-Way-To-Mess-Around-and-Fall-in-Love",
         ],
     ),
     # Test that dashes show up
-    (1960, 83, ["Happy-Go-Lucky-Me", "Paul-Evans"]),
-    # Test the 26th element of the 1970s list
-    (1970, 25, ["Which-Way-You-Goin'-Billy?", "The-Poppy-Family"]),
-    # Test the 34th element of the 1970s list
-    (1970, 33, ["Instant-Karma!", "John-Lennon"]),
+    (1960, 83, ["Paul-Evans", "Happy-Go-Lucky-Me"]),
+    # Test that question marks are removed
+    (1970, 25, ["The-Poppy-Family", "Which-Way-You-Goin'-Billy"]),
+    # Test that exclamation marks are removed
+    (1970, 33, ["John-Lennon", "Instant-Karma"]),
     # Test the 61st element of the 1970s list
-    (1970, 60, ["25-or-6-to-4", "Chicago"]),
-    # Testing that the 14th element of the 1980s list has the forward
-    # slash show up
-    (1980, 13, ["Working-My-Way-Back-to-You/Forgive-Me,-Girl", "The Spinners"]),
-    # Testing the 23rd element of the 2020s list
-    (2020, 22, ["10,000 Hours", "Dan + Shay and Justin Bieber"]),
+    (1970, 60, ["Chicago", "25-or-6-to-4"]),
+    # Test that commas are removed
+    (1980, 13, ["The-Spinners", "Working-My-Way-Back-to-You/Forgive-Me-Girl"]),
+    # Test that plus signs are removed
+    (2020, 22, ["Dan-Shay-and-Justin-Bieber", "10000-Hours"]),
+    # Test that if there is " – ", it is removed
+    (2020, 34, ["Jawsh-685-and-Jason-Derulo", "Savage-Love-Laxed-Siren-Beat"]),
+    # Test that periods are removed
+    (2020, 98, ["HER", "Slide"]),
+    # Test that anything after the word "featuring" is removed
+    (2020, 89, ["Rod-Wave", "Rags2Riches"])
+
 ]
 
 

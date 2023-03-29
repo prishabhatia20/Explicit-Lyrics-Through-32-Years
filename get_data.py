@@ -63,6 +63,24 @@ def get_table(year):
         for item in list_data
     ]
 
+    # Remove question marks
+    list_data = [
+        [
+            item[0].replace("?", "").replace("?", ""),
+            item[1].replace("?", "").replace("?", ""),
+        ]
+        for item in list_data
+    ]
+
+    # Remove exclamation marks
+    list_data = [
+        [
+            item[0].replace("!", "").replace("!", ""),
+            item[1].replace("!", "").replace("!", ""),
+        ]
+        for item in list_data
+    ]
+
     # Removing plus signs
     list_data = [
         [
