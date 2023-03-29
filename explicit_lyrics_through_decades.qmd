@@ -40,27 +40,54 @@ print(number)
 
 ```{python}
 all_bad_words = []
-field_names = ['Fuck', 'Shit', 'Ass', 'Bitch', 'Cunt', 'Dick', 'Sex', 'Slut', 'Pussy', 'Crap', 'Hell', 'Cock', 'Penis', 'Bussy', 'Motherfucker', 'Hoe', 'Whore']
 
-start_year = 1990
-end_year = 2022
+start_year = 2017
+end_year = 2019
 all_bad_words.append(word_counter_total(start_year, end_year))
+
 ```
 
 ```{python}
 print(all_bad_words)
-
-with open('Curse_Word_Data.csv', 'w') as csvfile:
-    writer = csv.DictWriter(csvfile, fieldnames=field_names)
-    writer.writeheader()
-    writer.writerows(all_bad_words)
-
-# https://www.geeksforgeeks.org/how-to-save-a-python-dictionary-to-a-csv-file/ -- article that shows how to put the data into csv -- basically what i used for the code above
-
 ```
 
 ```{python}
-word_counter_total(2020, 2021)
-print(word_counter_total)
+# print(all_bad_words)
+
+# with open('Curse_Word_Data.csv', 'w') as csvfile:
+#     writer = csv.DictWriter(csvfile, fieldnames=field_names)
+#     writer.writeheader()
+#     writer.writerows(all_bad_words)
+
+# https://www.geeksforgeeks.org/how-to-save-a-python-dictionary-to-a-csv-file/ -- article that shows how to put the data into csv -- basically what i used for the code above
+```
+
+```{python}
+word_bank = ['fuck', 'shit', 'ass', 'bitch', 'cunt', 'dick', 'sex', 'slut', 'pussy', 'crap', 'hell', 'cock', 'penis', 'bussy', 'motherfucker', 'hoe', 'whore','munch']
+data = all_bad_words[0]
+for sub_dict in data:
+    for bad_word in word_bank:
+        if bad_word not in sub_dict:
+            sub_dict[bad_word] = 0
+print (data)
+```
+
+```{python}
+import csv
+data = all_bad_words[0]
+
+
+
+keys = list(data[0].keys())
+keys.remove('year')
+with open('output.csv', 'w', newline='') as file:
+    writer = csv.writer(file)
+    writer.writerow(['Year'] + keys)
+    for d in data:
+        writer.writerow([d['year']] + [d[k] for k in keys])
+        
+# https://www.geeksforgeeks.org/how-to-save-a-python-dictionary-to-a-csv-file/ -- article that shows how to put the data into csv -- basically what i used for the code above
+
+
 ```
 
