@@ -91,3 +91,152 @@ with open('output.csv', 'w', newline='') as file:
 
 ```
 
+```{python}
+import matplotlib.pyplot as plt
+import csv
+
+x = []
+sex = []
+hell = []
+fuck = []
+shit = []
+ass = []
+bitch = []
+cunt = []
+dick = []
+slut = []
+pussy = []
+crap = []
+cock = []
+penis = []
+bussy = []
+motherfucker = []
+hoe = []
+whore = []
+munch = []
+
+
+
+with open('output1990-2022.csv', 'r') as csvfile:
+    reader = csv.reader(csvfile)
+    next(reader) # skip header row
+    for row in reader:
+        x.append(int(row[0])) # year
+        sex.append(int(row[1])) 
+        hell.append(int(row[2])) 
+        fuck.append(int(row[3])) 
+        shit.append(int(row[4])) 
+        ass.append(int(row[5]))
+        bitch.append(int(row[6]))
+        cunt.append(int(row[7])) 
+        dick.append(int(row[8])) 
+        slut.append(int(row[9])) 
+        pussy.append(int(row[10])) 
+        crap.append(int(row[11])) 
+        cock.append(int(row[12])) 
+        penis.append(int(row[13])) 
+        bussy.append(int(row[14])) 
+        motherfucker.append(int(row[15])) 
+        hoe.append(int(row[16])) 
+        whore.append(int(row[17])) 
+        munch.append(int(row[18])) 
+plt.plot(x, sex, label='Sex')
+plt.plot(x, hell, label='Hell')
+plt.plot(x, fuck, label='Fuck')
+plt.plot(x, shit, label='Shit')
+plt.plot(x, ass, label='Ass')
+plt.plot(x, bitch, label='Bitch')
+plt.plot(x, cunt, label='Cunt')
+plt.plot(x, dick, label='Dick')
+plt.plot(x, slut, label='Slut')
+plt.plot(x, pussy, label='Pussy')
+plt.plot(x, crap, label='Crap')
+plt.plot(x, cock, label='Cock')
+plt.plot(x, penis, label='Penis')
+plt.plot(x, bussy, label='Bussy')
+plt.plot(x, motherfucker, label='Motherfucker')
+plt.plot(x, hoe, label='Hoe')
+plt.plot(x, whore, label='Whore')
+plt.plot(x, munch, label='Munch')
+plt.xlabel('Year')
+plt.ylabel('Bad Words')
+plt.title('Bad Words vs Years')
+plt.legend()
+plt.show()
+```
+
+```{python}
+import csv
+import matplotlib.pyplot as plt
+import numpy as np
+total_per_year = []
+with open('output1990-2022.csv', 'r') as csvfile:
+    reader = csv.reader(csvfile)
+    next(reader) # skip header row
+    for row in reader:
+        word = 0
+        for i in range(1,19):
+            word += int(row[i])
+        total_per_year.append(word)
+print(total_per_year)
+timestep = np.arange(1990, 2023, 1)
+plt.plot(timestep, total_per_year)
+plt.xlabel('Time')
+plt.ylabel('Number of Bad Words')
+plt.show()
+
+```
+
+```{python}
+import csv
+
+word_total_bank = []
+
+for i in range(1, 19):
+    word = 0
+    with open('output1990-2022.csv', 'r') as csvfile:
+        reader = csv.reader(csvfile)
+        next(reader) # skip header row
+        for row in reader:    
+            word += int(row[i])
+    word_total_bank.append(word)    
+print(word_total_bank)
+
+
+```
+
+```{python}
+from wordcloud import WordCloud
+import matplotlib.pyplot as plt
+bad_word_bank = ["sex", "hell","fuck","shit","ass", "bitch","cunt","dick","slut","pussy","crap","cock","penis","bussy","motherfucker","hoe","whore","munch"]
+word_counter_dict = dict(zip(bad_word_bank,word_total_bank))
+print(word_counter_dict)
+
+
+
+# Create a WordCloud object with font size proportional to the values in the dictionary
+wordcloud = WordCloud(width=800, height=800, background_color='white', min_font_size=10)
+wordcloud.generate_from_frequencies(frequencies=word_counter_dict)
+
+# Display the word cloud
+plt.figure(figsize = (8, 8), facecolor = None)
+plt.imshow(wordcloud)
+plt.axis("off")
+plt.tight_layout(pad = 0)
+plt.show()
+```
+
+```{python}
+total_int = 0
+for i in range(len(word_total_bank)):
+    total_int += word_total_bank[i]
+print(total_int)
+```
+
+```{python}
+total_percentages = []
+for i in range(len(word_total_bank)):
+    total_percentages.append(word_total_bank[i]/total_int)
+print(total_percentages)
+```
+
