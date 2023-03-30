@@ -29,37 +29,28 @@ from get_data import get_table
 from bad_word_counter import word_counter_total
 import csv
 from collections import Counter
+from wordcloud import WordCloud
+import matplotlib.pyplot as plt
+import numpy as np
 ```
 
 The get_table function takes in a year and returns the Wikipedia table associated with that year in list format. Specifically, it is a list of lists. The inner list contains the song and the artist ['Song', 'Artist']. The order that the songs are in is the order that they are ranked (i.e. the element in the list at index 0 is the number one song, and the element in the list at index 99 is the song in the 100th place). In the example below, we input the year 1990 and get a list of 100 songs and their corresponding artists.
 
 ```{python}
-number = get_table(1970)
-print(number)
+nineties_list = get_table(1990)
+print(nineties_list)
 ```
 
 ```{python}
 all_bad_words = []
 
-start_year = 2017
-end_year = 2019
+start_year = 1990
+end_year = 2022
 all_bad_words.append(word_counter_total(start_year, end_year))
-
 ```
 
 ```{python}
 print(all_bad_words)
-```
-
-```{python}
-# print(all_bad_words)
-
-# with open('Curse_Word_Data.csv', 'w') as csvfile:
-#     writer = csv.DictWriter(csvfile, fieldnames=field_names)
-#     writer.writeheader()
-#     writer.writerows(all_bad_words)
-
-# https://www.geeksforgeeks.org/how-to-save-a-python-dictionary-to-a-csv-file/ -- article that shows how to put the data into csv -- basically what i used for the code above
 ```
 
 ```{python}
@@ -73,7 +64,6 @@ print (data)
 ```
 
 ```{python}
-import csv
 data = all_bad_words[0]
 
 
@@ -85,16 +75,9 @@ with open('output.csv', 'w', newline='') as file:
     writer.writerow(['Year'] + keys)
     for d in data:
         writer.writerow([d['year']] + [d[k] for k in keys])
-        
-# https://www.geeksforgeeks.org/how-to-save-a-python-dictionary-to-a-csv-file/ -- article that shows how to put the data into csv -- basically what i used for the code above
-
-
 ```
 
 ```{python}
-import matplotlib.pyplot as plt
-import csv
-
 x = []
 sex = []
 hell = []
@@ -140,6 +123,10 @@ with open('output1990-2022.csv', 'r') as csvfile:
         hoe.append(int(row[16])) 
         whore.append(int(row[17])) 
         munch.append(int(row[18])) 
+
+f = plt.figure()
+f.set_figwidth(10)
+f.set_figheight(10)
 plt.plot(x, sex, label='Sex')
 plt.plot(x, hell, label='Hell')
 plt.plot(x, fuck, label='Fuck')
@@ -166,9 +153,6 @@ plt.show()
 ```
 
 ```{python}
-import csv
-import matplotlib.pyplot as plt
-import numpy as np
 total_per_year = []
 with open('output1990-2022.csv', 'r') as csvfile:
     reader = csv.reader(csvfile)
@@ -178,17 +162,18 @@ with open('output1990-2022.csv', 'r') as csvfile:
         for i in range(1,19):
             word += int(row[i])
         total_per_year.append(word)
-print(total_per_year)
 timestep = np.arange(1990, 2023, 1)
+f = plt.figure()
+f.set_figwidth(10)
+f.set_figheight(10)
 plt.plot(timestep, total_per_year)
 plt.xlabel('Time')
 plt.ylabel('Number of Bad Words')
+plt.title('Total Bad Words Over Time')
 plt.show()
-
 ```
 
 ```{python}
-import csv
 
 word_total_bank = []
 
@@ -199,19 +184,13 @@ for i in range(1, 19):
         next(reader) # skip header row
         for row in reader:    
             word += int(row[i])
-    word_total_bank.append(word)    
-print(word_total_bank)
-
-
+    word_total_bank.append(word)
 ```
 
 ```{python}
-from wordcloud import WordCloud
-import matplotlib.pyplot as plt
+
 bad_word_bank = ["sex", "hell","fuck","shit","ass", "bitch","cunt","dick","slut","pussy","crap","cock","penis","bussy","motherfucker","hoe","whore","munch"]
 word_counter_dict = dict(zip(bad_word_bank,word_total_bank))
-print(word_counter_dict)
-
 
 
 # Create a WordCloud object with font size proportional to the values in the dictionary
