@@ -1,9 +1,9 @@
 """
-Create tests for the get_table function and implement them
-in the test_get_table function
+Create tests for the get_table function and the lyrics function
 """
 import pytest
 from get_data import get_table
+from genius_lyrics import lyrics
 
 # Define sets of test cases
 
@@ -50,8 +50,7 @@ test_cases_get_table = [
     # Test that periods are removed
     (2020, 98, ["HER", "Slide"]),
     # Test that anything after the word "featuring" is removed
-    (2020, 89, ["Rod-Wave", "Rags2Riches"])
-
+    (2020, 89, ["Rod-Wave", "Rags2Riches"]),
 ]
 
 
@@ -68,4 +67,96 @@ def test_get_table(year, element, answer):
         function should output
     """
     function_answer = get_table(year)[element]
+    assert function_answer == answer
+
+
+# Define a set of test cases for lyrics function -- these numbers were found by
+# going to the genius lyrics website and counting the number of words per song
+test_cases_genius_lyrics = [
+    # Test a case where no bad words exist in a song
+    (
+        "https://genius.com/The-Weeknd-Blinding-Lights-lyrics",
+        {
+            "fuck": 0,
+            "shit": 0,
+            "ass": 0,
+            "bitch": 0,
+            "cunt": 0,
+            "dick": 0,
+            "sex": 0,
+            "slut": 0,
+            "pussy": 0,
+            "crap": 0,
+            "hell": 0,
+            "cock": 0,
+            "penis": 0,
+            "bussy": 0,
+            "motherfucker": 0,
+            "hoe": 0,
+            "whore": 0,
+            "munch": 0,
+        },
+    ),
+    # Test WAP by Cardi B
+    (
+        "https://genius.com/Cardi-B-WAP-lyrics",
+        {
+            "fuck": 2,
+            "shit": 0,
+            "ass": 0,
+            "bitch": 0,
+            "cunt": 0,
+            "dick": 1,
+            "sex": 0,
+            "slut": 0,
+            "pussy": 16,
+            "crap": 0,
+            "hell": 0,
+            "cock": 0,
+            "penis": 0,
+            "bussy": 0,
+            "motherfucker": 0,
+            "hoe": 0,
+            "whore": 0,
+            "munch": 0,
+        },
+    ),
+    # Test Good as Hell by Lizzo
+    (
+        "https://genius.com/Lizzo-Good-as-Hell-lyrics",
+        {
+            "fuck": 0,
+            "shit": 2,
+            "ass": 3,
+            "bitch": 0,
+            "cunt": 0,
+            "dick": 0,
+            "sex": 0,
+            "slut": 0,
+            "pussy": 0,
+            "crap": 0,
+            "hell": 0,
+            "cock": 0,
+            "penis": 0,
+            "bussy": 0,
+            "motherfucker": 0,
+            "hoe": 0,
+            "whore": 0,
+            "munch": 0,
+        },
+    ),
+]
+
+
+@pytest.mark.parametrize("song_link,answer", test_cases_genius_lyrics)
+def test_genius_lyrics(song_link, answer):
+    """
+    This function tests the lyrics function. It takes in a URL and the desired answer
+    and compares it to the answer the function outputs.
+
+    Args:
+        song_link: a URL of the website that will be scraped
+        answer: a dictionary that is the right output the function should have
+    """
+    function_answer = lyrics(song_link)
     assert function_answer == answer

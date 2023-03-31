@@ -43,9 +43,9 @@ def get_table(year):
     # Convert the data to a list
     list_data = data_frame.values.tolist()
 
-    # Formatting the list so it follows the formatting of genius.com URLs
+    # Format the list so it follows the formatting of genius.com URLs
 
-    # Removing parentheses
+    # Remove parentheses
     list_data = [
         [
             item[0].replace("(", "").replace(")", ""),
@@ -81,7 +81,7 @@ def get_table(year):
         for item in list_data
     ]
 
-    # Removing plus signs
+    # Remove plus signs
     list_data = [
         [
             item[0].replace("+ ", "").replace("+ ", ""),
@@ -90,7 +90,7 @@ def get_table(year):
         for item in list_data
     ]
 
-    # Removing quotation marks and backslashes
+    # Remove quotation marks and backslashes
     list_data = [
         [
             item[0].strip('"\\'),
@@ -99,6 +99,7 @@ def get_table(year):
         for item in list_data
     ]
 
+    # Remove commas
     list_data = [
         [
             item[0].replace(",", ""),
@@ -107,7 +108,7 @@ def get_table(year):
         for item in list_data
     ]
 
-    # Replacing (x - x) with a single space
+    # Remove extra dashes (replace " - ")
     list_data = [
         [
             item[0].replace(" - ", "-").replace(" – ", "-"),
@@ -116,7 +117,7 @@ def get_table(year):
         for item in list_data
     ]
 
-    # Replace . with nothing
+    # Remove periods
     list_data = [
         [
             item[0].replace(".", ""),
@@ -125,11 +126,12 @@ def get_table(year):
         for item in list_data
     ]
 
-    # Replacing spaces with dashes
-
+    # Replace spaces with dashes
     list_data = [
         [item[0].replace(" ", "-"), item[1].replace(" ", "-")] for item in list_data
     ]
+
+    # Remove anything after the word "featuring"
     fixed_list = []
     for song, artist in list_data:
         if "featuring" in artist:

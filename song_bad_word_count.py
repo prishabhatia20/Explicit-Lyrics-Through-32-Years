@@ -1,5 +1,11 @@
-from genius_lyrics import lyrics
+"""
+This file contains the song_bad_word function, which counts
+the number of bad words in a specific song.
+"""
+
+# Import the necessary libraries
 from collections import Counter
+from genius_lyrics import lyrics
 
 
 def song_bad_word(year_artist_song):
@@ -18,7 +24,8 @@ def song_bad_word(year_artist_song):
         add_dict: A dictionary with each key being each bad word and each value
         being a counter for how many times each bad word occurs.
     """
-    add_dict = Counter(
+    # Create dictionary of bad words
+    return_dict = Counter(
         {
             "fuck": 0,
             "shit": 0,
@@ -40,41 +47,15 @@ def song_bad_word(year_artist_song):
             "munch": 0,
         }
     )
-
-    # return_dict = {
-    #     "fuck": 0,
-    #     "shit": 0,
-    #     "ass": 0,
-    #     "bitch": 0,
-    #     "cunt": 0,
-    #     "dick": 0,
-    #     "sex": 0,
-    #     "slut": 0,
-    #     "pussy": 0,
-    #     "crap": 0,
-    #     "hell": 0,
-    #     "cock": 0,
-    #     "penis": 0,
-    #     "bussy": 0,
-    #     "motherfucker": 0,
-    #     "hoe": 0,
-    #     "whore": 0,
-    # }
+    # Generate a URL for each sublist in the main list of 100 songs
     for sublist in year_artist_song:
         url = "https://genius.com/"
         for element in sublist:
             url += element
             url += "-"
         url += "lyrics"
+        # Pass the generated URL into the lyrics function
         current_dict = Counter(lyrics(url))
-        add_dict = current_dict + add_dict
-        # print(f"add dict: {add_dict}")
-        # for word in return_dict:
-        #     if word in add_dict:
-        #         return_dict[word] = add_dict[word]
-        #     else:
-        #         return_dict[word] = 0
-        # print(f"return dict: {return_dict}")
-        # genius_lyrics.py file that returns number of bad words for each song in the year
-        # print(add_dict)
-    return dict(add_dict)
+        # Merge the two dictionaries
+        return_dict = current_dict + return_dict
+    return dict(return_dict)
